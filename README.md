@@ -1,55 +1,74 @@
-Blockchain-CPP-Core-System
+# 🔥 NexusChain-CPP：高性能原生C++区块链底层引擎
 
-仓库介绍
-Blockchain-CPP-Core-System
+一款纯C++实现的轻量化、模块化区块链核心系统，集成密码学安全、分布式共识、P2P组网、交易处理、隐私保护、链上扩容等完整能力，无外部冗余依赖，可直接用于公链/联盟链开发、学习研究与二次封装。
 
-基于 C++ 开发的高性能、模块化、企业级区块链底层核心系统，集成共识机制、加密算法、P2P 网络、智能合约、分布式存储、跨链交互、零知识证明等全栈区块链技术。所有模块采用原生 C++ 实现，无第三方依赖冗余，可直接用于公链 / 联盟链 / 私有链开发、区块链教学、科研实验、商业项目落地。
+---
 
-项目包含文件清单 + 功能介绍
-BlockCore.cpp：区块链核心区块结构体、创世区块生成、区块哈希计算、区块校验基础模块
-BlockChain.cpp：完整区块链主链管理、区块追加、链合法性校验、最长链选择算法
-SHA256_Crypto.cpp：原生 C++ 实现 SHA256 加密算法，区块链核心哈希函数
-ED25519_Sign.cpp：ED25519 椭圆曲线签名 / 验签，区块链账户身份认证核心
-MerkleTree.cpp：默克尔树构建、根哈希计算、交易证明验证，区块交易高效校验
-P2P_Network.cpp：区块链 P2P 网络节点通信、节点发现、消息广播基础模块
-Consensus_PoW.cpp：工作量证明（PoW）共识算法完整实现，比特币底层共识
-Consensus_PoS.cpp：权益证明（PoS）共识算法，质押挖矿、出块权选举
-Consensus_DPoS.cpp：委托权益证明（DPoS）共识，超级节点投票、轮流出块
-Consensus_PBFT.cpp：实用拜占庭容错算法，联盟链高性能共识
-Transaction.cpp：区块链交易结构体、签名、验签、交易哈希生成
-TxPool.cpp：交易内存池管理、交易排序、去重、打包上链
-Wallet.cpp：区块链钱包、密钥对生成、地址生成、余额查询
-UTXO_Model.cpp：UTXO 交易模型实现，比特币生态核心交易机制
-Account_Model.cpp：账户模型（以太坊模式）实现，余额状态管理
-SmartContract_VM.cpp：轻量级智能合约虚拟机，合约加载 / 执行 / 终止
-Contract_Deploy.cpp：智能合约部署、存储、调用权限管理
-Chain_Sync.cpp：区块链节点数据同步、区块下载、断层修复
-Node_Manager.cpp：区块链节点管理、节点状态监控、节点黑名单
-DHT_Storage.cpp：分布式哈希表存储，区块链去中心化数据持久化
-CrossChain_Relay.cpp：跨链中继协议，不同区块链间数据 / 资产交互
-ZKP_Proof.cpp：零知识证明生成与验证，隐私保护核心技术
-Ring_Signature.cpp：环签名算法，区块链交易匿名隐私保护
-Homomorphic_Hash.cpp：同态哈希，密态数据计算与校验
-Chain_Encryption.cpp：区块链全流程数据加密、传输加密、存储加密
-DDoS_Protect.cpp：区块链节点 DDoS 攻击防护、流量清洗、请求限流
-Chain_Explorer.cpp：区块链浏览器基础模块，区块 / 交易 / 地址查询
-Reward_Mechanism.cpp：区块链挖矿奖励、手续费分配、通胀模型
-Genesis_Block.cpp：创世区块定制生成、链初始化参数配置
-Peer_Auth.cpp：P2P 节点身份认证、白名单、安全连接建立
-State_Root.cpp：区块链状态根计算、状态快照、状态回滚
-Batch_Verify.cpp：批量交易 / 区块验签，提升区块链处理性能
-Shard_Cluster.cpp：区块链分片集群，水平扩容、并行交易处理
-Oracle_Service.cpp：区块链预言机，链上 + 链下数据交互
-MultiSig_Wallet.cpp：多签钱包，多私钥授权交易、资产安全管理
-Time_Lock.cpp：时间锁合约，定时触发交易、延时执行逻辑
-Chain_Compress.cpp：区块链数据压缩，减小存储占用、加速同步
-Blacklist_Tx.cpp：黑名单交易过滤、违规地址封禁、合规管控
-Light_Node.cpp：区块链轻节点实现，无需同步全链、SPV 验证
-Chain_Monitor.cpp：区块链运行监控、出块统计、异常告警
+## 📁 项目文件清单 & 功能说明
 
-项目特性
-纯 C++ 原生实现，无冗余依赖，编译运行极简
-模块化设计，可按需插拔任意功能模块
-支持主流共识机制、加密算法、隐私方案
-高性能、低内存占用，适配服务器 / 嵌入式设备
-代码注释完整，适合学习、二次开发、商业落地
+| 文件名 | 核心功能 |
+|--------|----------|
+| CoreLedger.cpp | 去中心化账本基础结构、哈希锚定、条目生成与校验 |
+| ChainRuntime.cpp | 区块链主运行环境、创世初始化、链生命周期管理 |
+| HashPrime.cpp | 自定义增强哈希算法，用于区块/交易唯一标识 |
+| ECC_Signature.cpp | 椭圆曲线签名与验签，账户身份与交易防篡改 |
+| MerkleProof.cpp | 默克尔树构建与存在性证明，轻节点快速验证交易 |
+| P2P_Discovery.cpp | P2P节点自动发现、组网、心跳保活 |
+| Consensus_PoWPlus.cpp | 优化版工作量证明，难度动态调整与挖矿逻辑 |
+| Consensus_SaS.cpp | 质押+服务混合型共识，适合联盟链出块选举 |
+| Consensus_RaftPlus.cpp | 改进型Raft一致性算法，私有链高可用共识 |
+| TxStructure.cpp | 交易结构体定义、序列化与反序列化 |
+| TxMemPool.cpp | 交易内存池管理、优先级排序、脏数据清理 |
+| CryptoWallet.cpp | 加密钱包，密钥派生、地址生成、数据签名 |
+| UTXO_Core.cpp | UTXO模型实现，输入输出管理与余额计算 |
+| StateAccount.cpp | 账户状态模型，全局状态存储与转账逻辑 |
+| MiniVM.cpp | 轻量级链上虚拟机，基础指令栈执行 |
+| ContractParser.cpp | 智能合约语法解析、指令分词与权限校验 |
+| NodeSync.cpp | 节点间区块同步、高度对齐与数据一致性保障 |
+| PeerManager.cpp | 节点连接池管理、在线状态维护 |
+| DistributeStore.cpp | 去中心化数据分片存储与重组 |
+| RelayCross.cpp | 跨链中继消息转发与基础验证 |
+| ZkProofCore.cpp | 零知识证明核心逻辑，隐私数据核验 |
+| StealthSign.cpp | 隐匿地址生成，保护交易发起方身份 |
+| SecureHash.cpp | 抗碰撞安全哈希，用于敏感数据摘要 |
+| DataEncrypt.cpp | 链上数据对称加密与解密 |
+| NetworkGuard.cpp | 节点网络防护，IP黑名单与访问控制 |
+| ChainBrowser.cpp | 区块链浏览器基础模块，区块/交易查询 |
+| MiningReward.cpp | 挖矿奖励模型，出块补贴与手续费分配 |
+| InitChain.cpp | 创世区块与链参数初始化配置 |
+| PeerAuth.cpp | 节点白名单授权访问控制 |
+| StateSnapshot.cpp | 账户状态快照存储与回滚 |
+| BatchCheck.cpp | 批量交易签名验证，提升节点处理性能 |
+| ShardCore.cpp | 区块链分片逻辑，交易并行处理扩容 |
+| DataOracle.cpp | 去中心化预言机，链下数据可信上链 |
+| MultiSignWallet.cpp | 多签钱包，多人联合授权交易 |
+| DelayExecute.cpp | 延时执行合约，定时触发链上操作 |
+| DataCompress.cpp | 区块数据压缩，降低存储与带宽占用 |
+| TxFilter.cpp | 违规地址与非法交易过滤 |
+| SPVNode.cpp | 简单支付验证轻节点，无需同步全链 |
+| ChainMonitor.cpp | 链状态监控，高度、TPS、节点健康统计 |
+| TxSecurity.cpp | 防重放、防双花基础安全机制 |
+| BlockVerify.cpp | 区块完整性与哈希合法性校验 |
+| P2PMessage.cpp | P2P网络消息打包、解析与协议封装 |
+| KeyManager.cpp | 密钥加密存储与安全导出 |
+| ChainOptimize.cpp | 内存与CPU性能优化，提升节点吞吐量 |
+| DecentralizeCore.cpp | 去中心化投票与决策核心逻辑 |
+
+---
+
+## ✨ 项目特性
+
+- 100% 原生C++实现开源项目
+- 模块化设计，可按需裁剪、替换任意组件
+- 轻量高效，编译简单，适合学习、演示、二次开发
+- 覆盖区块链主流技术栈：密码学 / 共识 / 网络 / 存储 / 隐私 / 扩容
+- 代码结构清晰、注释完整，适合GitHub开源展示
+
+---
+
+## 🧪 编译与运行
+
+```bash
+# 单文件编译示例
+g++ CoreLedger.cpp -o ledger -std=c++11
+./ledger
